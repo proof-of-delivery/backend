@@ -10,7 +10,6 @@ RSpec.describe "/items", type: :request do
     supplier_item_id: Faker::Alphanumeric.alpha(number: 8),
     quantity: Faker::Number.number(digits: 2),
 
-
   } end
 
   let(:invalid_attributes) do {
@@ -79,7 +78,9 @@ RSpec.describe "/items", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          position: Faker::Number.number(digits: 2)
+        }
       }
 
       it "updates the requested item" do
@@ -87,7 +88,7 @@ RSpec.describe "/items", type: :request do
         patch item_url(item),
               params: { item: new_attributes }, headers: valid_headers, as: :json
         item.reload
-        skip("Add assertions for updated state")
+        expect(item.position).to eq new_attributes[:position]
       end
 
       it "renders a JSON response with the item" do
