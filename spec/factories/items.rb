@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :item do
-    position { FFaker::Number.number }
-    item_no { FFaker::Number.number }
-    description { FFaker::Lorem.sentences }
-    supplier_item_id { FFaker::Lorem.sentences }
-    quantity { FFaker::Number.number }
+    position { Faker::Number.number(digits: 2) }
+    item_no { Faker::Number.number(digits: 2) }
+    description { Faker::Lorem.sentences }
+    supplier_item_id { Faker::Lorem.sentences }
+    quantity { Faker::Number.number(digits: 2)}
+    warehouse_order factory: :warehouse_order
   end
 end

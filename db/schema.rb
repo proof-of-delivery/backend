@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_064317) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_192804) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_064317) do
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "warehouse_order_id", null: false
+    t.index ["warehouse_order_id"], name: "index_items_on_warehouse_order_id"
   end
 
   create_table "warehouse_orders", force: :cascade do |t|
@@ -37,11 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_064317) do
     t.string "delivery_address"
     t.string "voyage_no"
     t.string "weight_package"
-    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_warehouse_orders_on_item_id"
   end
 
-  add_foreign_key "warehouse_orders", "items"
+  add_foreign_key "items", "warehouse_orders"
 end

@@ -14,14 +14,13 @@ RSpec.describe "/warehouse_orders", type: :request do
       delivery_date: Faker::Name.name ,
       delivery_address: Faker::Name.name ,
       voyage_no: Faker::Name.name ,
-      weight_package: Faker::Name.name ,
-      item_id: create(:item).id
+      weight_package: Faker::Name.name
   }
   end
 
   let(:invalid_attributes) {
     {
-      customer_address: Faker::Name.name ,
+      customer_address: nil ,
       doc_no: Faker::Name.name ,
       date: Faker::Name.name ,
       customer_id: Faker::Name.name ,
@@ -32,8 +31,7 @@ RSpec.describe "/warehouse_orders", type: :request do
       delivery_date: Faker::Name.name ,
       delivery_address: Faker::Name.name ,
       voyage_no: Faker::Name.name ,
-      weight_package: Faker::Name.name ,
-      item_id: nil
+      weight_package: Faker::Name.name
     }
   }
 

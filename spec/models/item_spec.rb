@@ -14,5 +14,6 @@ RSpec.describe Item, type: :model do
   it {is_expected.to(validate_numericality_of(:position))}
   it {is_expected.to(validate_numericality_of(:item_no))}
   it {is_expected.to(validate_numericality_of(:quantity))}
+  it{is_expected.to(belong_to(:warehouse_order))}
 
 end

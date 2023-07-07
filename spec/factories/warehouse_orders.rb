@@ -1,17 +1,16 @@
 FactoryBot.define do
   factory :warehouse_order do
-    customer_address { FFaker::Lorem.sentences }
-    doc_no { FFaker::Lorem.sentences }
-    date { FFaker::Lorem.sentences }
-    customer_id { FFaker::Lorem.sentences }
-    assistance { FFaker::Lorem.sentences }
-    email { FFaker::Lorem.sentences }
-    purchase_order_no { FFaker::Lorem.sentences }
-    name_of_ship { FFaker::Lorem.sentences }
-    delivery_date { FFaker::Lorem.sentences }
-    delivery_address { FFaker::Lorem.sentences }
-    voyage_no { FFaker::Lorem.sentences }
-    weight_package { FFaker::Lorem.sentences }
-    item factory: :item
+    customer_address { Faker::Lorem.sentences }
+    doc_no { Faker::Lorem.sentences }
+    date { Faker::Lorem.sentences }
+    customer_id { Faker::Lorem.sentences }
+    assistance { Faker::Lorem.sentences }
+    email { Faker::Lorem.sentences }
+    purchase_order_no { Faker::Lorem.sentences }
+    name_of_ship { Faker::Lorem.sentences }
+    delivery_date { Faker::Lorem.sentences }
+    delivery_address { Faker::Lorem.sentences }
+    voyage_no { Faker::Lorem.sentences }
+    weight_package { Faker::Lorem.sentences }
   end
 end
