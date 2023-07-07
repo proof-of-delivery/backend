@@ -33,6 +33,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "ffaker"
+  gem "faker"
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
 end
@@ -42,3 +43,7 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers'
+end
