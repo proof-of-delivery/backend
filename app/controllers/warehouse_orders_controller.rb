@@ -36,6 +36,20 @@ class WarehouseOrdersController < ApplicationController
   def destroy
     @warehouse_order.destroy
   end
+  
+  def your_action
+    api_connector = ApiConnector.new('your_api_key')
+    endpoint = '/api/data' # Replace with the specific endpoint of the other API
+
+    # Example: Sending a POST request with data
+    data = { key: 'value' }
+    response = api_connector.request_data(endpoint, :post, data)
+
+    # Example: Sending a GET request without data
+    # response = api_connector.request_data(endpoint, :get)
+
+    # Process the response as needed
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

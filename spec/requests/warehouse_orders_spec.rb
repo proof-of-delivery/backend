@@ -137,4 +137,26 @@ RSpec.describe "/warehouse_orders", type: :request do
       }.to change(WarehouseOrder, :count).by(-1)
     end
   end
+
+  describe 'POST #your_action' do
+    let(:api_connector) { instance_double(ApiConnector) }
+    let(:endpoint) { '/api/data' }
+    let(:payload) { { key: 'value' } }
+    let(:response_body) { { result: 'success' } }
+
+    before do
+      allow(ApiConnector).to receive(:new).and_return(api_connector)
+      allow(api_connector).to receive(:request_data).and_return(response_body)
+    end
+
+    it 'sends a POST request with payload to the API' do
+      expect(api_connector).to receive(:request_data).with(endpoint, :post, payload)
+
+      post :your_action, params: { data: payload }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to eq(response_body.to_json)
+    end
+  end
+  
 end
