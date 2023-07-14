@@ -11,8 +11,8 @@ module JwtToken
     end
 
     def jwt_decode(token)
-        decoded = JWT.decode(token, SECRET_KEY) [0] 
+        decoded = JWT.decode(token, SECRET_KEY) [0]
         HashwithIndifferentAccess.new decoded
     end
-    
+
 end
