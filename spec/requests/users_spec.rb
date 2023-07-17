@@ -9,7 +9,9 @@ RSpec.describe "/users", type: :request do
       name: Faker::Name.name,
       user_name: Faker::Name.name,
       email: Faker::Name.name,
-      password_digest: Faker::Name.name,
+      password: Faker::Internet.password,
+
+      password_digest: Faker::Internet.password,
     }
   }
 
@@ -18,7 +20,8 @@ RSpec.describe "/users", type: :request do
       name: Faker::Name.name,
       user_name: Faker::Name.name,
       email: Faker::Name.name,
-      password_digest: nil
+      password_digest: nil,
+      password: nil
     }
   }
 
@@ -29,6 +32,10 @@ RSpec.describe "/users", type: :request do
   let(:valid_headers) {
     {}
   }
+
+  it "has a valid factory" do
+    expect(create(:user)).to be_valid
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
