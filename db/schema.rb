@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_17_123436) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_130154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,21 +36,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_123436) do
   end
 
   create_table "warehouse_orders", force: :cascade do |t|
-    t.string "customer_address", null: false
     t.string "doc_no", null: false
     t.string "date"
-    t.string "customer_id", null: false
-    t.string "assistance"
-    t.string "email"
     t.string "purchase_order_no", null: false
     t.string "name_of_ship"
     t.string "delivery_date"
     t.string "delivery_address"
-    t.string "voyage_no"
-    t.string "weight_package"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "customer_id", null: false
+    t.index ["customer_id"], name: "index_warehouse_orders_on_customer_id"
   end
 
   add_foreign_key "items", "warehouse_orders"
+  add_foreign_key "warehouse_orders", "customers"
 end

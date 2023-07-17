@@ -1,10 +1,10 @@
 class CreateWarehouseOrders < ActiveRecord::Migration[7.0]
   def change
     create_table :warehouse_orders do |t|
-      t.string :customer_address, null: false
+      t.string :customer_address
       t.string :doc_no, null: false
       t.string :date
-      t.string :customer_id, null: false
+      t.string :customer_id
       t.string :assistance
       t.string :email
       t.string :purchase_order_no, null: false

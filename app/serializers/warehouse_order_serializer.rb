@@ -1,4 +1,5 @@
 class WarehouseOrderSerializer < ActiveModel::Serializer
-  attributes :id, :customer_address, :doc_no, :date, :customer_id, :assistance, :email, :purchase_order_no, :name_of_ship, :delivery_date, :delivery_address, :voyage_no, :weight_package
+  attributes :id, :doc_no, :date, :purchase_order_no, :name_of_ship, :delivery_date, :delivery_address
   has_many :items
+  has_one :customer
 end
