@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_032618) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_130812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_032618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pickup_orders", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.datetime "pickup_date", null: false
+    t.string "pickup_time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_pickup_orders_on_customer_id"
+  end
+
   create_table "warehouse_items", force: :cascade do |t|
     t.bigint "warehouse_order_id", null: false
     t.bigint "item_id", null: false
@@ -71,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_032618) do
 
   add_foreign_key "customers", "contacts", column: "billing_contact_id"
   add_foreign_key "customers", "contacts", column: "primary_contact_id"
+  add_foreign_key "pickup_orders", "customers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"
   add_foreign_key "warehouse_orders", "customers"
