@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_130812) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_130812) do
     t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pickup_items", force: :cascade do |t|
+    t.bigint "pickup_order_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "warehouse_order_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_pickup_items_on_item_id"
+    t.index ["pickup_order_id"], name: "index_pickup_items_on_pickup_order_id"
+    t.index ["warehouse_order_id"], name: "index_pickup_items_on_warehouse_order_id"
   end
 
   create_table "pickup_orders", force: :cascade do |t|
@@ -80,6 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_130812) do
 
   add_foreign_key "customers", "contacts", column: "billing_contact_id"
   add_foreign_key "customers", "contacts", column: "primary_contact_id"
+  add_foreign_key "pickup_items", "items"
+  add_foreign_key "pickup_items", "pickup_orders"
+  add_foreign_key "pickup_items", "warehouse_orders"
   add_foreign_key "pickup_orders", "customers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"
