@@ -7,6 +7,7 @@ RSpec.describe "/items", type: :request do
     position: Faker::Number.number(digits: 2),
     item_no: Faker::Lorem.sentence,
     description: Faker::Lorem.sentence,
+    sales_order_no: Faker::Name.name ,
     unit: Faker::Lorem.sentence,
 
   } end
@@ -15,6 +16,7 @@ RSpec.describe "/items", type: :request do
     position: Faker::Number.number(digits: 2),
     item_no: nil,
     description: Faker::Lorem.sentence,
+    sales_order_no: Faker::Name.name ,
     unit: nil,
 
   } end

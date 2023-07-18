@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
     t.integer "position", null: false
     t.string "item_no", null: false
     t.string "description", null: false
+    t.string "sales_order_no", null: false
     t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,7 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
 
   create_table "warehouse_orders", force: :cascade do |t|
     t.string "doc_no", null: false
-    t.string "purchase_order_no", null: false
     t.string "name_of_ship"
     t.datetime "delivery_date"
     t.string "delivery_address"

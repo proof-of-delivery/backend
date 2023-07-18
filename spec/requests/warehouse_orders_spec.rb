@@ -4,7 +4,6 @@ RSpec.describe "/warehouse_orders", type: :request do
 
   let(:valid_attributes) do {
       doc_no: Faker::Name.name ,
-      purchase_order_no: Faker::Name.name ,
       name_of_ship: Faker::Name.name ,
       delivery_date: Faker::Date.in_date_period ,
       delivery_address: Faker::Name.name ,
@@ -15,7 +14,6 @@ RSpec.describe "/warehouse_orders", type: :request do
   let(:invalid_attributes) {
     {
       doc_no: Faker::Name.name ,
-      purchase_order_no: Faker::Name.name ,
       name_of_ship: Faker::Name.name ,
       delivery_date: Faker::Name.name ,
       delivery_address: Faker::Name.name ,
