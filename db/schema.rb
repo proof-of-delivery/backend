@@ -35,10 +35,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
 
   create_table "items", force: :cascade do |t|
     t.integer "position", null: false
-    t.integer "item_no", null: false
+    t.string "item_no", null: false
     t.string "description", null: false
-    t.string "supplier_item_id", null: false
-    t.integer "quantity", null: false
+    t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
