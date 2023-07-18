@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_032618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "warehouse_items", force: :cascade do |t|
+    t.bigint "warehouse_order_id", null: false
+    t.bigint "item_id", null: false
+    t.integer "quantity", null: false
+    t.integer "requested_quantity"
+    t.integer "confirmed_quantity"
+    t.integer "total_requested_quantity"
+    t.integer "total_confirmed_quantity"
+    t.integer "picked_up_quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_warehouse_items_on_item_id"
+    t.index ["warehouse_order_id"], name: "index_warehouse_items_on_warehouse_order_id"
+  end
+
   create_table "warehouse_orders", force: :cascade do |t|
     t.string "doc_no", null: false
     t.string "name_of_ship"
@@ -56,5 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_022845) do
 
   add_foreign_key "customers", "contacts", column: "billing_contact_id"
   add_foreign_key "customers", "contacts", column: "primary_contact_id"
+  add_foreign_key "warehouse_items", "items"
+  add_foreign_key "warehouse_items", "warehouse_orders"
   add_foreign_key "warehouse_orders", "customers"
 end
