@@ -5,6 +5,5 @@ FactoryBot.define do
     description { Faker::Lorem.sentences }
     supplier_item_id { Faker::Lorem.sentences }
     quantity { Faker::Number.number(digits: 2)}
-    warehouse_order factory: :warehouse_order
   end
 end

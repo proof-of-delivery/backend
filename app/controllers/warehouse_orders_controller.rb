@@ -45,6 +45,6 @@ class WarehouseOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def warehouse_order_params
-      params.require(:warehouse_order).permit(:doc_no, :date, :purchase_order_no, :name_of_ship, :delivery_date, :delivery_address, :customer_id)
+      params.require(:warehouse_order).permit(:doc_no, :purchase_order_no, :name_of_ship, :delivery_date, :delivery_address, :customer_id)
     end
 end

@@ -9,7 +9,6 @@ RSpec.describe "/items", type: :request do
     description: Faker::Lorem.sentence,
     supplier_item_id: Faker::Alphanumeric.alpha(number: 8),
     quantity: Faker::Number.number(digits: 2),
-    warehouse_order_id: create(:warehouse_order).id
 
   } end
 
@@ -19,7 +18,6 @@ RSpec.describe "/items", type: :request do
     description: Faker::Lorem.sentence,
     supplier_item_id: nil,
     quantity: Faker::Number.number(digits: 2),
-    warehouse_order_id: nil
 
   } end
 

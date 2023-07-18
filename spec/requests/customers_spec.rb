@@ -19,8 +19,8 @@ RSpec.describe "/customers", type: :request do
   let(:valid_attributes) do {
     name: Faker::Name.name,
     address: Faker::Name.name,
-    primary_contact: Faker::Name.name,
-    billing_contact: Faker::Name.name,
+    primary_contact_id: create(:contact).id,
+    billing_contact_id: create(:contact).id,
   }
   end
 
@@ -28,8 +28,8 @@ RSpec.describe "/customers", type: :request do
     {
     name: nil,
     address: Faker::Lorem.sentences,
-    primary_contact: Faker::Lorem.sentences,
-    billing_contact: Faker::Lorem.sentences,
+    primary_contact_id: nil,
+    billing_contact_id: nil,
     }
   }
 
