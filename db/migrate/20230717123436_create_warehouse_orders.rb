@@ -6,6 +6,7 @@ class CreateWarehouseOrders < ActiveRecord::Migration[7.0]
       t.string :name_of_ship
       t.datetime :delivery_date
       t.string :delivery_address
+      t.references :customer , null: false, foreign_key: true
 
       t.timestamps
     end

@@ -5,11 +5,9 @@ RSpec.describe "/items", type: :request do
 
   let(:valid_attributes) do {
     position: Faker::Number.number(digits: 2),
-    item_no: Faker::Number.number(digits: 8),
+    item_no: Faker::Lorem.sentence,
     description: Faker::Lorem.sentence,
-    supplier_item_id: Faker::Alphanumeric.alpha(number: 8),
-    quantity: Faker::Number.number(digits: 2),
-    warehouse_order_id: create(:warehouse_order).id
+    unit: Faker::Lorem.sentence,
 
   } end
 
@@ -17,9 +15,7 @@ RSpec.describe "/items", type: :request do
     position: Faker::Number.number(digits: 2),
     item_no: nil,
     description: Faker::Lorem.sentence,
-    supplier_item_id: nil,
-    quantity: Faker::Number.number(digits: 2),
-    warehouse_order_id: nil
+    unit: nil,
 
   } end
 

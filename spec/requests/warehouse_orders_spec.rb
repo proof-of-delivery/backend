@@ -3,35 +3,23 @@ require 'rails_helper'
 RSpec.describe "/warehouse_orders", type: :request do
 
   let(:valid_attributes) do {
-      customer_address: Faker::Name.name ,
       doc_no: Faker::Name.name ,
-      date: Faker::Name.name ,
-      customer_id: Faker::Name.name ,
-      assistance: Faker::Name.name ,
-      email: Faker::Name.name ,
       purchase_order_no: Faker::Name.name ,
       name_of_ship: Faker::Name.name ,
-      delivery_date: Faker::Name.name ,
+      delivery_date: Faker::Date.in_date_period ,
       delivery_address: Faker::Name.name ,
-      voyage_no: Faker::Name.name ,
-      weight_package: Faker::Name.name
+      customer_id: create(:customer).id
   }
   end
 
   let(:invalid_attributes) {
     {
-      customer_address: nil ,
       doc_no: Faker::Name.name ,
-      date: Faker::Name.name ,
-      customer_id: Faker::Name.name ,
-      assistance: Faker::Name.name ,
-      email: Faker::Name.name ,
       purchase_order_no: Faker::Name.name ,
       name_of_ship: Faker::Name.name ,
       delivery_date: Faker::Name.name ,
       delivery_address: Faker::Name.name ,
-      voyage_no: Faker::Name.name ,
-      weight_package: Faker::Name.name
+      customer_id: nil
     }
   }
 
@@ -97,7 +85,7 @@ RSpec.describe "/warehouse_orders", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {
         {
-          customer_address: Faker::Name.name
+          doc_no: Faker::Name.name ,
         }
       }
 
@@ -106,7 +94,7 @@ RSpec.describe "/warehouse_orders", type: :request do
         patch warehouse_order_url(warehouse_order),
               params: { warehouse_order: new_attributes }, headers: valid_headers, as: :json
         warehouse_order.reload
-        expect(warehouse_order.customer_address).to eq new_attributes[:customer_address]
+        expect(warehouse_order.doc_no).to eq new_attributes[:doc_no]
       end
 
       it "renders a JSON response with the warehouse_order" do

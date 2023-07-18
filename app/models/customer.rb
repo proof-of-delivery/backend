@@ -1,3 +1,5 @@
 class Customer < ApplicationRecord
-    validates :name, :address, :primary_contact, :billing_contact, presence: true
+    belongs_to :primary_contact, class_name: 'Contact'
+    belongs_to :billing_contact, class_name: 'Contact'
+    validates :name, :address, presence: true
 end
