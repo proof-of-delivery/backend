@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pickup_items
   resources :pickup_orders
   resources :warehouse_items
   resources :customers
