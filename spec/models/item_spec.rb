@@ -9,6 +9,7 @@ RSpec.describe Item, type: :model do
   it {is_expected.to(validate_presence_of(:position))}
   it {is_expected.to(validate_presence_of(:item_no))}
   it {is_expected.to(validate_presence_of(:description))}
+  it {is_expected.to(validate_presence_of(:sales_order_no))}
   it {is_expected.to(validate_presence_of(:unit))}
   it {is_expected.to(validate_numericality_of(:position))}
 
