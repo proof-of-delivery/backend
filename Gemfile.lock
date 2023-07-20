@@ -72,6 +72,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     ast (2.4.2)
+    bcrypt (3.1.19)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -106,6 +107,7 @@ GEM
       reline (>= 0.3.0)
     json (2.6.3)
     jsonapi-renderer (0.2.2)
+    jwt (2.7.1)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -185,6 +187,7 @@ GEM
     reline (0.3.5)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rolify (6.0.1)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -242,17 +245,20 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  bcrypt (~> 3.1.7)
   bootsnap
   database_cleaner-active_record
   debug
   factory_bot_rails
   faker
   ffaker
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.6)
   ransack
+  rolify
   rspec-rails
   rubocop
   rubocop-rspec
