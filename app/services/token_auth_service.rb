@@ -1,5 +1,5 @@
 class TokenAuthService
-    AUTH_SECRET = Rails.application.secrets.secrets_key_base. to_s
+    AUTH_SECRET = Rails.application.secrets.secret_key_base
 
     def self.issue(payload,exp=48.hours.from_now)
       payload[:exp] = exp.to_i
@@ -13,4 +13,4 @@ class TokenAuthService
     def self.auth_secret
       AUTH_SECRET
     end
-  end
+end
