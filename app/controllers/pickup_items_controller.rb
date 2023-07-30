@@ -48,6 +48,6 @@ class PickupItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pickup_item_params
-      params.require(:pickup_item).permit(:pickup_order_id, :item_id, :warehouse_order_id, :quantity)
+      params.require(:pickup_item).permit(:pickup_order_id, :item_id, :warehouse_item_id, :quantity)
     end
 end

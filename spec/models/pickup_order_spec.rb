@@ -7,5 +7,6 @@ RSpec.describe PickupOrder, type: :model do
 
   it{is_expected.to(validate_presence_of(:pickup_date))}
   it{is_expected.to(validate_presence_of(:pickup_time))}
+  it{is_expected.to(validate_presence_of(:pickup_order_no))}
   it{is_expected.to(belong_to(:customer))}
 end

@@ -46,6 +46,6 @@ class PickupOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pickup_order_params
-      params.require(:pickup_order).permit(:customer_id, :pickup_date, :pickup_time)
+      params.require(:pickup_order).permit(:customer_id, :pickup_date, :pickup_time, :pickup_order_no)
     end
 end

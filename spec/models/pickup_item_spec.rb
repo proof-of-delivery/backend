@@ -7,6 +7,6 @@ RSpec.describe PickupItem, type: :model do
 
   it{is_expected.to(validate_presence_of(:quantity))}
   it{is_expected.to(belong_to(:item))}
-  it{is_expected.to(belong_to(:warehouse_order))}
+  it{is_expected.to(belong_to(:warehouse_item))}
   it{is_expected.to(belong_to(:pickup_order))}
 end

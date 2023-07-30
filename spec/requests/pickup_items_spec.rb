@@ -7,7 +7,7 @@ RSpec.describe "/pickup_items", type: :request do
   let(:valid_attributes) do {
     pickup_order_id: create(:pickup_order).id,
     item_id: create(:item).id,
-    warehouse_order_id: create(:warehouse_order).id,
+    warehouse_item_id: create(:warehouse_item).id,
     quantity: Faker::Number.number(digits: 2)
   }
   end
@@ -16,7 +16,7 @@ RSpec.describe "/pickup_items", type: :request do
     {
       pickup_order_id:nil,
       item_id: nil,
-      warehouse_order_id: nil,
+      warehouse_item_id: nil,
       quantity: Faker::Number.number(digits: 2)
     }
   }
