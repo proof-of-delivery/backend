@@ -78,11 +78,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_182014) do
 
   create_table "pickup_orders", force: :cascade do |t|
     t.bigint "customer_id", null: false
+    t.bigint "contact_id", null: false
     t.datetime "pickup_date", null: false
     t.string "pickup_time", null: false
     t.string "pickup_order_no", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_pickup_orders_on_contact_id"
     t.index ["customer_id"], name: "index_pickup_orders_on_customer_id"
   end
 
@@ -145,6 +147,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_182014) do
   add_foreign_key "pickup_items", "items"
   add_foreign_key "pickup_items", "pickup_orders"
   add_foreign_key "pickup_items", "warehouse_items"
+  add_foreign_key "pickup_orders", "contacts"
   add_foreign_key "pickup_orders", "customers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"

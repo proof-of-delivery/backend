@@ -9,6 +9,7 @@ RSpec.describe "/pickup_orders", type: :request do
     pickup_date: Faker::Date.in_date_period,
     pickup_time: Faker::Name.name,
     pickup_order_no: Faker::Name.name,
+    contact_id: create(:contact).id
   }
   end
 
@@ -18,6 +19,7 @@ RSpec.describe "/pickup_orders", type: :request do
       pickup_date: Faker::Date.in_date_period,
       pickup_time: nil,
       pickup_order_no: Faker::Name.name,
+      contact_id: nil
     }
   }
 
