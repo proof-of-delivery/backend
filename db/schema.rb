@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_182014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
     t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "packaging_details", force: :cascade do |t|
+    t.string "package_type"
+    t.float "weight", null: false
+    t.float "length", null: false
+    t.float "width", null: false
+    t.float "height", null: false
+    t.string "cbm", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "packaging_items", force: :cascade do |t|
+    t.bigint "packaging_detail_id", null: false
+    t.bigint "pickup_item_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["packaging_detail_id"], name: "index_packaging_items_on_packaging_detail_id"
+    t.index ["pickup_item_id"], name: "index_packaging_items_on_pickup_item_id"
   end
 
   create_table "pickup_items", force: :cascade do |t|
@@ -93,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
 
   add_foreign_key "customers", "contacts", column: "billing_contact_id"
   add_foreign_key "customers", "contacts", column: "primary_contact_id"
+  add_foreign_key "packaging_items", "packaging_details"
+  add_foreign_key "packaging_items", "pickup_items"
   add_foreign_key "pickup_items", "items"
   add_foreign_key "pickup_items", "pickup_orders"
   add_foreign_key "pickup_items", "warehouse_items"
