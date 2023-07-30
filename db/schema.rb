@@ -46,19 +46,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
   create_table "pickup_items", force: :cascade do |t|
     t.bigint "pickup_order_id", null: false
     t.bigint "item_id", null: false
-    t.bigint "warehouse_order_id", null: false
+    t.bigint "warehouse_item_id", null: false
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_pickup_items_on_item_id"
     t.index ["pickup_order_id"], name: "index_pickup_items_on_pickup_order_id"
-    t.index ["warehouse_order_id"], name: "index_pickup_items_on_warehouse_order_id"
+    t.index ["warehouse_item_id"], name: "index_pickup_items_on_warehouse_item_id"
   end
 
   create_table "pickup_orders", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.datetime "pickup_date", null: false
     t.string "pickup_time", null: false
+    t.string "pickup_order_no", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_pickup_orders_on_customer_id"
@@ -94,7 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_140324) do
   add_foreign_key "customers", "contacts", column: "primary_contact_id"
   add_foreign_key "pickup_items", "items"
   add_foreign_key "pickup_items", "pickup_orders"
-  add_foreign_key "pickup_items", "warehouse_orders"
+  add_foreign_key "pickup_items", "warehouse_items"
   add_foreign_key "pickup_orders", "customers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"
