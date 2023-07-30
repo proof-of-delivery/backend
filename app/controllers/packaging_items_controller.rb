@@ -3,7 +3,8 @@ class PackagingItemsController < ApplicationController
 
   # GET /packaging_items
   def index
-    @packaging_items = PackagingItem.all
+    @q = PackagingItem.ransack(params[:q])
+    @packaging_items = @q.result(:distinct => true).includes(:packaging_detail, :pickup_item)
 
     render json: @packaging_items
   end

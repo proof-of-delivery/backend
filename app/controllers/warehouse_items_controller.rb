@@ -3,9 +3,8 @@ class WarehouseItemsController < ApplicationController
 
   # GET /warehouse_items
   def index
-    # @warehouse_items = WarehouseItem.all
     @q = WarehouseItem.ransack(params[:q])
-    @warehouse_item = @q.result(:distinct => true).includes(:warehouse_order, :item)
+    @warehouse_items = @q.result(:distinct => true).includes(:warehouse_order, :item)
 
     render json: @warehouse_items
   end
