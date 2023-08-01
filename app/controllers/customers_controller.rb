@@ -3,7 +3,9 @@ class CustomersController < ApplicationController
 
   # GET /customers
   def index
-    @customers = Customer.all
+    @q = Customer.ransack(params[:q])
+    @customers = @q.result
+    # (:distinct => true).includes(:primary_contact, :billing_contact)
 
     render json: @customers
   end

@@ -3,7 +3,8 @@ class PackagingDetailsController < ApplicationController
 
   # GET /packaging_details
   def index
-    @packaging_details = PackagingDetail.all
+    @q = PackagingDetail.ransack(params[:q])
+    packaging_details = @q.result
 
     render json: @packaging_details
   end
