@@ -15,6 +15,6 @@ class AuthenticationController < ApplicationController
 
     def login_params
       params.require(:payload).permit(:email, :password)
-    end 
+    end
     
 end
