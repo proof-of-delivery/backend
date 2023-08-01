@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_182014) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_220908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,10 +118,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_182014) do
     t.bigint "warehouse_order_id", null: false
     t.bigint "item_id", null: false
     t.integer "quantity", null: false
-    t.integer "requested_quantity"
-    t.integer "confirmed_quantity"
-    t.integer "total_requested_quantity"
-    t.integer "total_confirmed_quantity"
+    t.integer "total_requested_quantity", default: 0
+    t.integer "total_confirmed_quantity", default: 0
     t.integer "picked_up_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
