@@ -4,6 +4,6 @@ class Customer < ApplicationRecord
     validates :name, :address, presence: true
 
     def self.ransackable_attributes(auth_object = nil)
-        ['id', 'name', 'primary_contact','billing_contact', 'address', 'created_at', 'updated_at']
+        ['name', 'address', 'primary_contact_id', 'billing_contact_id', 'id', 'created_at', 'updated_at']
     end
 end
