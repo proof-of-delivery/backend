@@ -5,7 +5,6 @@ class CustomersController < ApplicationController
   def index
     @q = Customer.ransack(params[:q])
     @customers = @q.result
-    # (:distinct => true).includes(:primary_contact, :billing_contact)
 
     render json: @customers
   end
