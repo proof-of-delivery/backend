@@ -1,8 +1,13 @@
 class WarehouseOrdersController < ApplicationController
   before_action :set_warehouse_order, only: %i[ show update destroy ]
 
-  # GET /warehouse_orders
   def index
+    @warehouse_orders = WarehouseOrder.all
+    render json: @warehouse_orders
+  end
+
+  # GET /warehouse_orders
+  def filter
     @q = WarehouseOrder.ransack(params[:q])
     @warehouse_orders = @q.result(:distinct => true).includes(:customer)
 

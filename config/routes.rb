@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :customers
   resources :items
   resources :warehouse_orders
+
+  post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
+  post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -9,9 +9,6 @@ class WarehouseItem < ApplicationRecord
     ['warehouse_order_id', 'item_id', 'quantity','total_requested_quantity', 'total_confirmed_quantity', 'picked_up_quantity', 'id', 'created_at', 'updated_at']
   end
 
-
-  self.table_name = 'warehouse_items'
-
   def request_quantity(requested_quantity)
     available_to_request = quantity - total_confirmed_quantity
     quantity
