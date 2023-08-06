@@ -3,14 +3,19 @@ Rails.application.routes.draw do
   resources :packaging_details
   resources :pickup_items
   resources :pickup_orders
-  resources :warehouse_items
   resources :customers
   resources :items
   resources :warehouse_orders
+  resources :warehouse_items do 
+    member do
+      post :request_quantity
+      post :confirm_quantity
+    end
+  end
 
   post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
   post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

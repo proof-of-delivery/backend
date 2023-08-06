@@ -11,17 +11,28 @@ class WarehouseItem < ApplicationRecord
 
   def request_quantity(requested_quantity)
     available_to_request = quantity - total_confirmed_quantity
-    quantity
-    requested_quantity = available_to_request if requested_quantity > available_to_request
-    self.total_requested_quantity += requested_quantity
-    self.save
-  end
+    if requested_quantity > available_to_request
+      errors.add(:base, "Requested quantity cannot be greater than available quantity")
+      return false
+    else
+      self.total_requested_quantity += requested_quantity
+      self.save
+    end
+  end  
 
   def confirm_quantity(confirmed_quantity)
-    quantity
-    confirmed_quantity = available_to_confirm if confirmed_quantity > available_to_confirm
-    self.total_confirmed_quantity += confirmed_quantity
-    self.save
+    available_to_confirm = total_requested_quantity - total_confirmed_quantity
+    if confirmed_quantity > available_to_confirm
+      errors.add(:base, "Confirmed quantity cannot be greater than available quantity")
+      return false
+    else
+      self.class.transaction do
+        self.total_confirmed_quantity += confirmed_quantity
+        self.total_requested_quantity -= confirmed_quantity
+        self.save!
+      end
+    end
   end
+  
   
 end

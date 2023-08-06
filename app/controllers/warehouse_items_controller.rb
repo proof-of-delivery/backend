@@ -1,5 +1,5 @@
 class WarehouseItemsController < ApplicationController
-  before_action :set_warehouse_item, only: %i[ show update destroy ]
+  before_action :set_warehouse_item, only: %i[ show update destroy request_quantity confirm_quantity ]
 
   def index 
     @warehouse_items = WarehouseItem.all
@@ -42,6 +42,19 @@ class WarehouseItemsController < ApplicationController
   # DELETE /warehouse_items/1
   def destroy
     @warehouse_item.destroy
+  end
+
+  def request_quantity
+    requested_quantity = params[:requested_quantity].to_i
+    @warehouse_item.request_quantity(requested_quantity)
+    render json: @warehouse_item
+  end
+
+  # POST /warehouse_items/1/confirm
+  def confirm_quantity
+    confirmed_quantity = params[:confirmed_quantity].to_i
+    @warehouse_item.confirm_quantity(confirmed_quantity)
+    render json: @warehouse_item
   end
 
   private
