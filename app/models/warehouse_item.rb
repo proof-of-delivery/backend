@@ -21,7 +21,7 @@ class WarehouseItem < ApplicationRecord
   end  
 
   def confirm_quantity(confirmed_quantity)
-    available_to_confirm = total_requested_quantity - total_confirmed_quantity
+    available_to_confirm = total_requested_quantity
     if confirmed_quantity > available_to_confirm
       errors.add(:base, "Confirmed quantity cannot be greater than available quantity")
       return false
