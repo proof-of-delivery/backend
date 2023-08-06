@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :pickup_orders
   resources :customers
   resources :items
+  get '/warehouse_orders/confirmed', controller: :warehouse_orders, action: :confirmed_warehouseorders
   resources :warehouse_orders
   resources :warehouse_items do 
     member do
@@ -15,11 +16,6 @@ Rails.application.routes.draw do
 
   post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
   post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 
   resources :users, param: :_username
   post '/auth/login', to: 'authentication#login'

@@ -43,6 +43,12 @@ class WarehouseOrdersController < ApplicationController
     @warehouse_order.destroy
   end
 
+  def confirmed_warehouseorders
+    @warehouse_orders = WarehouseOrder.joins(:warehouse_item).where("warehouse_items.total_confirmed_quantity > 0").distinct
+    render json: @warehouse_orders
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_warehouse_order
