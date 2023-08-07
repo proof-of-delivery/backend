@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :pickup_orders
   resources :customers
   resources :items
+  resources :pod_headers
+  resources :pod_items
   get '/warehouse_orders/confirmed', controller: :warehouse_orders, action: :confirmed_warehouseorders
   get '/warehouse_items/confirmed', controller: :warehouse_items, action: :confirmed_warehouse_items
   resources :warehouse_orders
