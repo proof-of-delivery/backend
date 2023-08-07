@@ -1,8 +1,13 @@
 class PackagingDetailsController < ApplicationController
   before_action :set_packaging_detail, only: %i[ show update destroy ]
 
+  def index 
+    packaging_details = PackagingDetail.all
+    render json: packaging_details
+  end
+
   # GET /packaging_details
-  def index
+  def filter
     @q = PackagingDetail.ransack(params[:q])
     packaging_details = @q.result
 
