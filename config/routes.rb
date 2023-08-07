@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  post '/pickup_items/filter', controller: :pickup_items, action: :filter
+  post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
+  post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
+  
   resources :packaging_items
   resources :packaging_details
   resources :pickup_items
@@ -14,9 +19,6 @@ Rails.application.routes.draw do
       post :confirm_quantity
     end
   end
-
-  post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
-  post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
 
   resources :users, param: :_username
   post '/auth/login', to: 'authentication#login'

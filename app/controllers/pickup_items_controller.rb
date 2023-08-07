@@ -3,6 +3,12 @@ class PickupItemsController < ApplicationController
 
   # GET /pickup_items
   def index
+   
+    @pickup_items = PickupItem.all
+    render json: @pickup_items
+  end
+
+  def filter
     @q = PickupItem.ransack(params[:q])
     @pickup_items = @q.result(:distinct => true).includes(:warehouse_item, :item, :pickup_order)
 
