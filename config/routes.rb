@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :items
   get '/warehouse_orders/confirmed', controller: :warehouse_orders, action: :confirmed_warehouseorders
+  get '/warehouse_items/confirmed', controller: :warehouse_items, action: :confirmed_warehouse_items
   resources :warehouse_orders
   resources :warehouse_items do 
     member do

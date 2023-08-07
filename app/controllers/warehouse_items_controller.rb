@@ -57,6 +57,11 @@ class WarehouseItemsController < ApplicationController
     render json: @warehouse_item
   end
 
+  def confirmed_warehouse_items
+    @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where("total_confirmed_quantity > 0")
+    render json: @warehouse_items
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_warehouse_item
