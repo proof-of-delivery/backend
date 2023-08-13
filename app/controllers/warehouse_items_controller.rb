@@ -1,5 +1,5 @@
 class WarehouseItemsController < ApplicationController
-  before_action :set_warehouse_item, only: %i[ show update destroy request_quantity confirm_quantity ]
+  before_action :set_warehouse_item, only: %i[ show update approve destroy request_quantity confirm_quantity ]
 
   def index 
     @warehouse_items = WarehouseItem.all
@@ -61,6 +61,15 @@ class WarehouseItemsController < ApplicationController
     @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where("total_confirmed_quantity > 0")
     render json: @warehouse_items
   end
+
+  def approve
+    if @warehouse_item.update(status: 'approved')
+      render json: @warehouse_item
+    else
+      render json: @warehouse_item.errors, status: :unprocessable_entity
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
