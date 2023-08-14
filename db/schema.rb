@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_194411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -141,6 +141,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
     t.integer "picked_up_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "waiting_approval"
     t.index ["item_id"], name: "index_warehouse_items_on_item_id"
     t.index ["warehouse_order_id"], name: "index_warehouse_items_on_warehouse_order_id"
   end

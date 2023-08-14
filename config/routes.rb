@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       post :request_quantity
       post :confirm_quantity
+      post :approve
     end
   end
 

@@ -1,5 +1,5 @@
 class WarehouseItemsController < ApplicationController
-  before_action :set_warehouse_item, only: %i[ show update destroy request_quantity confirm_quantity ]
+  before_action :set_warehouse_item, only: %i[ show update approve destroy request_quantity confirm_quantity ]
 
   def index 
     @warehouse_items = WarehouseItem.all
@@ -62,6 +62,15 @@ class WarehouseItemsController < ApplicationController
     render json: @warehouse_items
   end
 
+  def approve
+    if @warehouse_item.update(status: 'approved')
+      render json: @warehouse_item
+    else
+      render json: @warehouse_item.errors, status: :unprocessable_entity
+    end
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_warehouse_item
@@ -70,6 +79,6 @@ class WarehouseItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def warehouse_item_params
-      params.require(:warehouse_item).permit(:warehouse_order_id, :item_id, :quantity, :requested_quantity, :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity)
+      params.require(:warehouse_item).permit(:warehouse_order_id, :item_id, :quantity, :requested_quantity, :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity, :status)
     end
 end
