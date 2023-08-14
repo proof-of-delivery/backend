@@ -90,25 +90,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
 
   create_table "pod_headers", force: :cascade do |t|
     t.bigint "pickup_order_id", null: false
-    t.string "pickedup_data"
-    t.datetime "pickedup_time"
-    t.bigint "customer_id", null: false
-    t.string "freight_forwarder"
-    t.bigint "warehouse_order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_pod_headers_on_customer_id"
     t.index ["pickup_order_id"], name: "index_pod_headers_on_pickup_order_id"
-    t.index ["warehouse_order_id"], name: "index_pod_headers_on_warehouse_order_id"
   end
 
   create_table "pod_items", force: :cascade do |t|
     t.string "vessel"
-    t.integer "packaging_detail_item_id"
+    t.bigint "packaging_item_id", null: false
     t.string "customs_document"
     t.bigint "pod_header_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["packaging_item_id"], name: "index_pod_items_on_packaging_item_id"
     t.index ["pod_header_id"], name: "index_pod_items_on_pod_header_id"
   end
 
@@ -171,9 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
   add_foreign_key "pickup_items", "warehouse_items"
   add_foreign_key "pickup_orders", "contacts"
   add_foreign_key "pickup_orders", "customers"
-  add_foreign_key "pod_headers", "customers"
   add_foreign_key "pod_headers", "pickup_orders"
-  add_foreign_key "pod_headers", "warehouse_orders"
+  add_foreign_key "pod_items", "packaging_items"
   add_foreign_key "pod_items", "pod_headers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post '/pickup_items/filter', controller: :pickup_items, action: :filter
   post '/warehouse_orders/filter', controller: :warehouse_orders, action: :filter
   post '/warehouse_items/filter', controller: :warehouse_items, action: :filter
+  post '/pod_headers/generate', controller: :pod_headers, action: :generate
+  post '/pod_headers/filter', controller: :pod_headers, action: :filter
   
   resources :packaging_items
   resources :packaging_details

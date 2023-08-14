@@ -8,6 +8,23 @@ class PodHeadersController < ApplicationController
     render json: @pod_headers
   end
 
+  # GET /pod_headers
+  def filter
+    @q = PodHeader.ransack(params[:q])
+    @pod_headers = @q.result
+
+    render json: @pod_headers
+  end
+
+  def generate 
+    @pickup_order = PickupOrder.find(params[:id])
+    @pod_header = PodHeader.create(
+      pickup_order: @pickup_order
+    )
+
+    render json: @pod_header
+  end
+
   # GET /pod_headers/1
   def show
     render json: @pod_header
@@ -46,6 +63,6 @@ class PodHeadersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pod_header_params
-      params.fetch(:pod_header, {})
+      params.require(:pod_header).permit(:pickup_order_id)
     end
 end
