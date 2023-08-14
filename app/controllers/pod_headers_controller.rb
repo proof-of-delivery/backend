@@ -19,6 +19,7 @@ class PodHeadersController < ApplicationController
   def generate 
     @pickup_order = PickupOrder.find(params[:id])
     @pod_header = PodHeader.create(
+      id: @pickup_order.id,
       pickup_order: @pickup_order
     )
 

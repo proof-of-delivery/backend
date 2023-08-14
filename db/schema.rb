@@ -97,12 +97,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
 
   create_table "pod_items", force: :cascade do |t|
     t.string "vessel"
-    t.bigint "packaging_item_id", null: false
+    t.bigint "packaging_detail_id", null: false
     t.string "customs_document"
     t.bigint "pod_header_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["packaging_item_id"], name: "index_pod_items_on_packaging_item_id"
+    t.index ["packaging_detail_id"], name: "index_pod_items_on_packaging_detail_id"
     t.index ["pod_header_id"], name: "index_pod_items_on_pod_header_id"
   end
 
@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_053400) do
   add_foreign_key "pickup_orders", "contacts"
   add_foreign_key "pickup_orders", "customers"
   add_foreign_key "pod_headers", "pickup_orders"
-  add_foreign_key "pod_items", "packaging_items"
+  add_foreign_key "pod_items", "packaging_details"
   add_foreign_key "pod_items", "pod_headers"
   add_foreign_key "warehouse_items", "items"
   add_foreign_key "warehouse_items", "warehouse_orders"

@@ -45,6 +45,7 @@ class PodItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pod_item_params
-      params.fetch(:pod_item, {})
+      params.require(:pod_item).permit(:vessel, :packaging_detail_id, :customs_document, :pod_header_id)
     end
+
 end
