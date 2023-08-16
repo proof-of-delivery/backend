@@ -23,6 +23,15 @@ class PodHeadersController < ApplicationController
       pickup_order: @pickup_order
     )
 
+    @packaging_details = PackagingDetail.where(pickup_order_id: @pickup_order.id)
+
+    @packaging_details.each do |packaging_detail|
+      @pod_item = PodItem.create(
+        packaging_detail: @packaging_detail,
+        pod_header: @pod_header
+      )
+    end
+
     render json: @pod_header
   end
 

@@ -22,10 +22,10 @@ class PackagingDetailsController < ApplicationController
   # POST /packaging_details
   def create
     @packaging_detail = PackagingDetail.new(packaging_detail_params)
-    @pod_item = PodItem.create(
-      packaging_detail: @packaging_detail,
-      pod_header: @packaging_detail.packaging_item.first.pickup_item.pickup_order.id
-    )
+    # @pod_item = PodItem.create(
+    #   packaging_detail: @packaging_detail,
+    #   pod_header: @packaging_detail.packaging_item.first.pickup_item.pickup_order.id
+    # )
 
     if @packaging_detail.save
       # @pod_item = PodItem.create(
