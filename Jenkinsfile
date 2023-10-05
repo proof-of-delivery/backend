@@ -3,11 +3,12 @@ pipeline {
 
     stages {
 
-        // stage('Build') {
-        //     steps {
-            
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh 'rbenv install 3.2.2'
+                sh 'rbenv shell 3.2.2'
+            }
+        }
 
         stage('Database Setup') {
             steps {
