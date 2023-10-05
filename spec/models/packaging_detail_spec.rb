@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe PackagingDetail, type: :model do
-  it 'has a valid factory' do
+  it "has a valid factory" do
     expect(create(:packaging_detail)).to be_valid
   end
 

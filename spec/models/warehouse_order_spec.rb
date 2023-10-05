@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe WarehouseOrder, type: :model do
-  it 'has a valid factory' do
+  it "has a valid factory" do
     expect(create(:warehouse_order)).to be_valid
   end
 

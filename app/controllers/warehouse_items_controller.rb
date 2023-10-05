@@ -60,7 +60,7 @@ class WarehouseItemsController < ApplicationController
   end
 
   def confirmed_warehouse_items
-    @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where('total_confirmed_quantity > 0')
+    @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where("total_confirmed_quantity > 0")
     render json: @warehouse_items
   end
 
@@ -74,6 +74,6 @@ class WarehouseItemsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def warehouse_item_params
     params.require(:warehouse_item).permit(:warehouse_order_id, :item_id, :quantity, :requested_quantity,
-                                           :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity)
+      :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity)
   end
 end

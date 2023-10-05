@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe '/warehouse_orders', type: :request do
+RSpec.describe "/warehouse_orders", type: :request do
   let(:valid_attributes) do
     {
       doc_no: Faker::Name.name,
@@ -31,94 +31,94 @@ RSpec.describe '/warehouse_orders', type: :request do
     {}
   end
 
-  describe 'GET /index' do
-    it 'renders a successful response' do
+  describe "GET /index" do
+    it "renders a successful response" do
       WarehouseOrder.create! valid_attributes
       get warehouse_orders_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /show' do
-    it 'renders a successful response' do
+  describe "GET /show" do
+    it "renders a successful response" do
       warehouse_order = WarehouseOrder.create! valid_attributes
       get warehouse_order_url(warehouse_order), as: :json
       expect(response).to be_successful
     end
   end
 
-  describe 'POST /create' do
-    context 'with valid parameters' do
-      it 'creates a new WarehouseOrder' do
+  describe "POST /create" do
+    context "with valid parameters" do
+      it "creates a new WarehouseOrder" do
         expect do
           post warehouse_orders_url,
-               params: { warehouse_order: valid_attributes }, headers: valid_headers, as: :json
+            params: {warehouse_order: valid_attributes}, headers: valid_headers, as: :json
         end.to change(WarehouseOrder, :count).by(1)
       end
 
-      it 'renders a JSON response with the new warehouse_order' do
+      it "renders a JSON response with the new warehouse_order" do
         post warehouse_orders_url,
-             params: { warehouse_order: valid_attributes }, headers: valid_headers, as: :json
+          params: {warehouse_order: valid_attributes}, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including('application/json'))
+        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
-    context 'with invalid parameters' do
-      it 'does not create a new WarehouseOrder' do
+    context "with invalid parameters" do
+      it "does not create a new WarehouseOrder" do
         expect do
           post warehouse_orders_url,
-               params: { warehouse_order: invalid_attributes }, as: :json
+            params: {warehouse_order: invalid_attributes}, as: :json
         end.to change(WarehouseOrder, :count).by(0)
       end
 
-      it 'renders a JSON response with errors for the new warehouse_order' do
+      it "renders a JSON response with errors for the new warehouse_order" do
         post warehouse_orders_url,
-             params: { warehouse_order: invalid_attributes }, headers: valid_headers, as: :json
+          params: {warehouse_order: invalid_attributes}, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including('application/json'))
+        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
   end
 
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
+  describe "PATCH /update" do
+    context "with valid parameters" do
       let(:new_attributes) do
         {
           doc_no: Faker::Name.name
         }
       end
 
-      it 'updates the requested warehouse_order' do
+      it "updates the requested warehouse_order" do
         warehouse_order = WarehouseOrder.create! valid_attributes
         patch warehouse_order_url(warehouse_order),
-              params: { warehouse_order: new_attributes }, headers: valid_headers, as: :json
+          params: {warehouse_order: new_attributes}, headers: valid_headers, as: :json
         warehouse_order.reload
         expect(warehouse_order.doc_no).to eq new_attributes[:doc_no]
       end
 
-      it 'renders a JSON response with the warehouse_order' do
+      it "renders a JSON response with the warehouse_order" do
         warehouse_order = WarehouseOrder.create! valid_attributes
         patch warehouse_order_url(warehouse_order),
-              params: { warehouse_order: new_attributes }, headers: valid_headers, as: :json
+          params: {warehouse_order: new_attributes}, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including('application/json'))
+        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
-    context 'with invalid parameters' do
-      it 'renders a JSON response with errors for the warehouse_order' do
+    context "with invalid parameters" do
+      it "renders a JSON response with errors for the warehouse_order" do
         warehouse_order = WarehouseOrder.create! valid_attributes
         patch warehouse_order_url(warehouse_order),
-              params: { warehouse_order: invalid_attributes }, headers: valid_headers, as: :json
+          params: {warehouse_order: invalid_attributes}, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including('application/json'))
+        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
   end
 
-  describe 'DELETE /destroy' do
-    it 'destroys the requested warehouse_order' do
+  describe "DELETE /destroy" do
+    it "destroys the requested warehouse_order" do
       warehouse_order = WarehouseOrder.create! valid_attributes
       expect do
         delete warehouse_order_url(warehouse_order), headers: valid_headers, as: :json

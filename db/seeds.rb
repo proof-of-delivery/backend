@@ -9,32 +9,32 @@
 #   Character.create(name: "Luke", movie: movies.first)
 def seed_customers
   Customer.create!(
-    name: 'Acme Corporation',
-    address: '123 Main Street, Anytown, CA 12345',
+    name: "Acme Corporation",
+    address: "123 Main Street, Anytown, CA 12345",
     primary_contact_id: Contact.create!(
-      name: 'John Smith',
-      email: 'john.smith@acme.com',
-      phone_number: '123-456-7890'
+      name: "John Smith",
+      email: "john.smith@acme.com",
+      phone_number: "123-456-7890"
     ).id,
     billing_contact_id: Contact.create!(
-      name: 'Jane Doe',
-      email: 'jane.doe@acme.com',
-      phone_number: '456-789-0123'
+      name: "Jane Doe",
+      email: "jane.doe@acme.com",
+      phone_number: "456-789-0123"
     ).id
   )
 
   Customer.create!(
-    name: 'XYZ Company',
-    address: '456 Elm Street, Anytown, CA 12345',
+    name: "XYZ Company",
+    address: "456 Elm Street, Anytown, CA 12345",
     primary_contact_id: Contact.create!(
-      name: 'Mary Jones',
-      email: 'mary.jones@xyz.com',
-      phone_number: '567-890-1234'
+      name: "Mary Jones",
+      email: "mary.jones@xyz.com",
+      phone_number: "567-890-1234"
     ).id,
     billing_contact_id: Contact.create!(
-      name: 'Bill Brown',
-      email: 'bill.brown@xyz.com',
-      phone_number: '789-012-3456'
+      name: "Bill Brown",
+      email: "bill.brown@xyz.com",
+      phone_number: "789-012-3456"
     ).id
   )
 end
@@ -58,9 +58,9 @@ def seed_warehouse_orders
         item_id: Item.create!(
           item_no: "#{i + 12_345}-#{j + 1}",
           description: "Widget #{i + j + 1}",
-          sales_order_no: 'SO-98433',
+          sales_order_no: "SO-98433",
           position: j,
-          unit: 'pcs'
+          unit: "pcs"
         ).id,
         quantity: 10,
         picked_up_quantity: 0
@@ -83,9 +83,9 @@ def seed_warehouse_orders
         item_id: Item.create!(
           item_no: "#{i + 67_890}-#{j + 1}",
           description: "Gizmo #{i + j + 1}",
-          sales_order_no: 'SO-65433',
+          sales_order_no: "SO-65433",
           position: j,
-          unit: 'pcs'
+          unit: "pcs"
         ).id,
         quantity: 10,
         picked_up_quantity: 0

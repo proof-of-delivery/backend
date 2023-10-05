@@ -46,7 +46,7 @@ class WarehouseOrdersController < ApplicationController
   end
 
   def confirmed_warehouseorders
-    @warehouse_orders = WarehouseOrder.joins(:warehouse_item).where('warehouse_items.total_confirmed_quantity > 0').where(customer_id: params[:customer_id]).distinct
+    @warehouse_orders = WarehouseOrder.joins(:warehouse_item).where("warehouse_items.total_confirmed_quantity > 0").where(customer_id: params[:customer_id]).distinct
     render json: @warehouse_orders
   end
 

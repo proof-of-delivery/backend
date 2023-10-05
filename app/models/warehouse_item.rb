@@ -9,13 +9,13 @@ class WarehouseItem < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[warehouse_order_id item_id quantity total_requested_quantity total_confirmed_quantity
-       picked_up_quantity id created_at updated_at]
+      picked_up_quantity id created_at updated_at]
   end
 
   def request_quantity(requested_quantity)
     available_to_request = quantity - total_confirmed_quantity
     if requested_quantity > available_to_request
-      errors.add(:base, 'Requested quantity cannot be greater than available quantity')
+      errors.add(:base, "Requested quantity cannot be greater than available quantity")
       false
     else
       self.total_requested_quantity += requested_quantity
@@ -26,7 +26,7 @@ class WarehouseItem < ApplicationRecord
   def confirm_quantity(confirmed_quantity)
     available_to_confirm = total_requested_quantity
     if confirmed_quantity > available_to_confirm
-      errors.add(:base, 'Confirmed quantity cannot be greater than available quantity')
+      errors.add(:base, "Confirmed quantity cannot be greater than available quantity")
       false
     else
       self.class.transaction do
