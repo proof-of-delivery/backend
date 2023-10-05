@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    RUBY_VERSION = '3.2.2'
+  }
+
   stages {
     stage('Build') {
       steps {
