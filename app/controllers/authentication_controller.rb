@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AuthenticationController < ApplicationController
-  skip_before_action :authenticate
 
   def login
     @user = User.find_by(email: login_params[:email])
