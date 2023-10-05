@@ -5,14 +5,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'sudo apt-get install -y ruby-full'
-                sh 'bundle install'
+                sh 'docker-compose up -d'
             }
         }
 
         stage('Database Setup') {
             steps {
-                sh 'docker-compose up -d'
                 sh 'bundle exec rails db:create'
                 sh 'bundle exec rails db:migrate'
             }
