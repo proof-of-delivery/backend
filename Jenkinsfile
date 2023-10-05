@@ -5,10 +5,8 @@ pipeline {
       
         stage('Build') {
             steps {
-                sh 'rbenv install'
-                sh 'rbenv local 3.2.2'
-                sh 'gem install bundler'
-                sh 'gem install ./vendor/comee_core-0.1.9.gem'
+                sh 'rbenv install 3.2.2'
+                sh 'rbenv shell 3.2.2'
                 sh 'bundle install'
             }
         }
