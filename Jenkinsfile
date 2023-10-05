@@ -21,13 +21,13 @@ pipeline {
             }
         }
 
-        stage('RSpec Tests') {
+        stage('Tests') {
             steps {
                 sh 'bundle exec rspec'
             }
         }
 
-        stage('RuboCop Linting') {
+        stage('Linting') {
             steps {
                 sh 'bundle exec rubocop'
             }
