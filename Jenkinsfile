@@ -5,6 +5,7 @@ pipeline {
       
         stage('Build') {
             steps {
+                sh 'apt-get install -y ruby-full'
                 sh 'bundle install'
             }
         }
