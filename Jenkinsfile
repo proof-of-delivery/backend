@@ -3,14 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Build') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+            
+        //     }
+        // }
 
         stage('Database Setup') {
             steps {
+                sh 'docker-compose up -d'
                 sh 'bundle exec rails db:create'
                 sh 'bundle exec rails db:migrate'
             }
