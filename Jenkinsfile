@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Build') {
         steps {
+            sh 'rbenv install 3.2.2'
             sh 'rbenv local 3.2.2'
             sh 'gem install bundler'
             sh 'bundle install'
