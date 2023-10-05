@@ -7,16 +7,19 @@ pipeline {
 
   stages {
     stage('Build') {
-      steps {
-        container('ruby:3.2.2') {
-          script {
-            sh 'apt-get update && apt-get install -y postgresql-client'
+        steps {
+            sh 'rbenv local 3.2.2'
+            sh 'gem install bundler'
             sh 'bundle install'
-            sh 'bundle exec rubocop'
-          }
         }
-      }
     }
+
+    stage('linting') {
+        steps {
+            sh 'bundle exec rubocop'
+        }
+    }
+    
 
     stage('Test') {
       steps {
