@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-      
         stage('Build') {
             steps {
-                sh 'apt-get install -y ruby-full'
-                sh 'bundle install'
+                sh 'docker-compose up -d'
+                sh 'docker-compose exec app bash'
+                sh 'bundle'
             }
         }
 
