@@ -1,44 +1,54 @@
 pipeline {
-  agent any
+    agent any
 
-  environment {
-    RUBY_VERSION = '3.2.2'
-  }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'development']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/proof-of-delivery/pod_backend']]])
+            }
+        }
 
-  stages {
-    stage('Build') {
-        steps {
-            sh 'rbenv install 3.2.2'
-            // sh 'rbenv local 3.2.2'
-            sh 'gem install bundler'
-            sh 'bundle install'
+        stage('Build') {
+            steps {
+                sh 'rbenv local 3.2.2'
+                sh 'gem install bundler'
+                sh 'gem install ./vendor/comee_core-0.1.9.gem'
+                sh 'bundle install'
+            }
+        }
+
+        stage('Database Setup') {
+            steps {
+                sh 'docker-compose up -d'
+                sh 'bundle exec rails db:create'
+                sh 'bundle exec rails db:migrate'
+            }
+        }
+
+        stage('RSpec Tests') {
+            steps {
+                sh 'bundle exec rspec'
+            }
+        }
+
+        stage('RuboCop Linting') {
+            steps {
+                sh 'bundle exec rubocop'
+            }
+        }
+
+        stage('Database Cleanup') {
+            steps {
+                // Stop and remove the database container
+                sh 'docker-compose down'
+            }
+        }
+        
+        stage('Clean Up') {
+            steps {
+                // Clean up any temporary files or resources
+                deleteDir()
+            }
         }
     }
-
-    stage('linting') {
-        steps {
-            sh 'bundle exec rubocop'
-        }
-    }
-    
-
-    stage('Test') {
-      steps {
-        container('ruby:3.2.2') {
-          // start the postgres database
-          sh 'docker run --name postgres -e POSTGRES_DB=ci_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=runner123 -d postgres:15.3-alpine'
-
-          // run the tests
-          sh 'apt-get update && apt-get install -y postgresql-client'
-          sh 'bundle install'
-          sh 'cp config/database-ci.yml config/database.yml'
-          sh 'bundle exec rails db:create db:schema:load'
-          sh 'bundle exec rails spec'
-
-          // stop the postgres database
-          sh 'docker rm -f postgres'
-        }
-      }
-    }
-  }
 }
