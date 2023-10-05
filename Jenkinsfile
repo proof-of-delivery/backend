@@ -5,7 +5,6 @@ pipeline {
       
         stage('Build') {
             steps {
-                sh 'rbenv shell 3.2.2'
                 sh 'bundle install'
             }
         }
