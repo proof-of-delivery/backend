@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :packaging_item do
     packaging_detail factory: :packaging_detail

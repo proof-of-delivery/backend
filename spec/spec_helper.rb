@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -5,7 +6,6 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
   config.expect_with :rspec do |expectations|
-
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
@@ -18,10 +18,5 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
-=begin
-
-=end
 end

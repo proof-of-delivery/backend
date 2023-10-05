@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PodHeadersController < ApplicationController
-  before_action :set_pod_header, only: %i[ show update destroy ]
+  before_action :set_pod_header, only: %i[show update destroy]
 
   # GET /pod_headers
   def index
@@ -39,13 +41,14 @@ class PodHeadersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pod_header
-      @pod_header = PodHeader.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pod_header_params
-      params.fetch(:pod_header, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pod_header
+    @pod_header = PodHeader.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pod_header_params
+    params.fetch(:pod_header, {})
+  end
 end

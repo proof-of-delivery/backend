@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :item do
     position { Faker::Number.number(digits: 2) }

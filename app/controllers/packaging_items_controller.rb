@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class PackagingItemsController < ApplicationController
-  before_action :set_packaging_item, only: %i[ show update destroy ]
+  before_action :set_packaging_item, only: %i[show update destroy]
 
   # GET /packaging_items
   def index
     @q = PackagingItem.ransack(params[:q])
-    @packaging_items = @q.result(:distinct => true).includes(:packaging_detail, :pickup_item)
+    @packaging_items = @q.result(distinct: true).includes(:packaging_detail, :pickup_item)
 
     render json: @packaging_items
   end
@@ -40,13 +42,14 @@ class PackagingItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_packaging_item
-      @packaging_item = PackagingItem.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def packaging_item_params
-      params.require(:packaging_item).permit(:packaging_detail_id, :pickup_item_id, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_packaging_item
+    @packaging_item = PackagingItem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def packaging_item_params
+    params.require(:packaging_item).permit(:packaging_detail_id, :pickup_item_id, :quantity)
+  end
 end

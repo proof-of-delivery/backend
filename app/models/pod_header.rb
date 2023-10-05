@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PodHeader < ApplicationRecord
   belongs_to :pickup_order
   belongs_to :customer

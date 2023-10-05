@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePodHeaders < ActiveRecord::Migration[7.0]
   def change
     create_table :pod_headers do |t|

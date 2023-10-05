@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 class PickupItemsController < ApplicationController
-  before_action :set_pickup_item, only: %i[ show update destroy ]
+  before_action :set_pickup_item, only: %i[show update destroy]
 
   # GET /pickup_items
   def index
-   
     @pickup_items = PickupItem.all
     render json: @pickup_items
   end
 
   def filter
     @q = PickupItem.ransack(params[:q])
-    @pickup_items = @q.result(:distinct => true).includes(:warehouse_item, :item, :pickup_order)
+    @pickup_items = @q.result(distinct: true).includes(:warehouse_item, :item, :pickup_order)
 
     render json: @pickup_items
   end
@@ -46,13 +47,14 @@ class PickupItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pickup_item
-      @pickup_item = PickupItem.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pickup_item_params
-      params.require(:pickup_item).permit(:pickup_order_id, :item_id, :warehouse_item_id, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pickup_item
+    @pickup_item = PickupItem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pickup_item_params
+    params.require(:pickup_item).permit(:pickup_order_id, :item_id, :warehouse_item_id, :quantity)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :pickup_order do
     customer factory: :customer
@@ -5,6 +7,5 @@ FactoryBot.define do
     pickup_time { Faker::Lorem.sentences }
     pickup_order_no { Faker::Lorem.sentences }
     contact factory: :contact
-
   end
 end

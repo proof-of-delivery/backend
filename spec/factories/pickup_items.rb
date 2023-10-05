@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :pickup_item do
     pickup_order factory: :pickup_order

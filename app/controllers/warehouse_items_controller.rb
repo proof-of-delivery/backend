@@ -1,7 +1,9 @@
-class WarehouseItemsController < ApplicationController
-  before_action :set_warehouse_item, only: %i[ show update destroy request_quantity confirm_quantity ]
+# frozen_string_literal: true
 
-  def index 
+class WarehouseItemsController < ApplicationController
+  before_action :set_warehouse_item, only: %i[show update destroy request_quantity confirm_quantity]
+
+  def index
     @warehouse_items = WarehouseItem.all
     render json: @warehouse_items
   end
@@ -9,8 +11,8 @@ class WarehouseItemsController < ApplicationController
   # GET /warehouse_items
   def filter
     @q = WarehouseItem.ransack(params[:q])
-    @warehouse_items = @q.result(:distinct => true).includes(:warehouse_order, :item)
-    
+    @warehouse_items = @q.result(distinct: true).includes(:warehouse_order, :item)
+
     render json: @warehouse_items
   end
 
@@ -58,18 +60,20 @@ class WarehouseItemsController < ApplicationController
   end
 
   def confirmed_warehouse_items
-    @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where("total_confirmed_quantity > 0")
+    @warehouse_items = WarehouseItem.where(warehouse_order_id: params[:warehouse_order_id]).where('total_confirmed_quantity > 0')
     render json: @warehouse_items
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_warehouse_item
-      @warehouse_item = WarehouseItem.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def warehouse_item_params
-      params.require(:warehouse_item).permit(:warehouse_order_id, :item_id, :quantity, :requested_quantity, :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_warehouse_item
+    @warehouse_item = WarehouseItem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def warehouse_item_params
+    params.require(:warehouse_item).permit(:warehouse_order_id, :item_id, :quantity, :requested_quantity,
+                                           :confirmed_quantity, :total_requested_quantity, :total_confirmed_quantity, :picked_up_quantity)
+  end
 end

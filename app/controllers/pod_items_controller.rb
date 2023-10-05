@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PodItemsController < ApplicationController
-  before_action :set_pod_item, only: %i[ show update destroy ]
+  before_action :set_pod_item, only: %i[show update destroy]
 
   # GET /pod_items
   def index
@@ -38,13 +40,14 @@ class PodItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pod_item
-      @pod_item = PodItem.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pod_item_params
-      params.fetch(:pod_item, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pod_item
+    @pod_item = PodItem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pod_item_params
+    params.fetch(:pod_item, {})
+  end
 end

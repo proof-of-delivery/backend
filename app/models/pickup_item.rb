@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PickupItem < ApplicationRecord
   belongs_to :pickup_order
   belongs_to :item
@@ -8,9 +10,8 @@ class PickupItem < ApplicationRecord
 
   after_create :update_picked_up_quantity
 
-
-  def self.ransackable_attributes(auth_object = nil)
-    ['pickup_order_id', 'item_id', 'quantity', 'warehouse_item_id', 'id', 'created_at', 'updated_at']
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[pickup_order_id item_id quantity warehouse_item_id id created_at updated_at]
   end
 
   private
@@ -23,5 +24,4 @@ class PickupItem < ApplicationRecord
       )
     end
   end
-
 end

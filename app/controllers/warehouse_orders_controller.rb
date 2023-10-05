@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WarehouseOrdersController < ApplicationController
-  before_action :set_warehouse_order, only: %i[ show update destroy ]
+  before_action :set_warehouse_order, only: %i[show update destroy]
 
   def index
     @warehouse_orders = WarehouseOrder.all
@@ -9,7 +11,7 @@ class WarehouseOrdersController < ApplicationController
   # GET /warehouse_orders
   def filter
     @q = WarehouseOrder.ransack(params[:q])
-    @warehouse_orders = @q.result(:distinct => true).includes(:customer)
+    @warehouse_orders = @q.result(distinct: true).includes(:customer)
 
     render json: @warehouse_orders
   end
@@ -44,18 +46,19 @@ class WarehouseOrdersController < ApplicationController
   end
 
   def confirmed_warehouseorders
-    @warehouse_orders = WarehouseOrder.joins(:warehouse_item).where("warehouse_items.total_confirmed_quantity > 0").where(customer_id: params[:customer_id]).distinct
+    @warehouse_orders = WarehouseOrder.joins(:warehouse_item).where('warehouse_items.total_confirmed_quantity > 0').where(customer_id: params[:customer_id]).distinct
     render json: @warehouse_orders
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_warehouse_order
-      @warehouse_order = WarehouseOrder.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def warehouse_order_params
-      params.require(:warehouse_order).permit(:doc_no, :name_of_ship, :delivery_date, :delivery_address, :customer_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_warehouse_order
+    @warehouse_order = WarehouseOrder.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def warehouse_order_params
+    params.require(:warehouse_order).permit(:doc_no, :name_of_ship, :delivery_date, :delivery_address, :customer_id)
+  end
 end

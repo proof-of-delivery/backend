@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeWarehouseItemsSchema < ActiveRecord::Migration[7.0]
   def change
     # Remove the requested_quantity and confirmed_quantity columns

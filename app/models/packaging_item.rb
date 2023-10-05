@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PackagingItem < ApplicationRecord
   belongs_to :packaging_detail
   belongs_to :pickup_item
@@ -10,8 +12,7 @@ class PackagingItem < ApplicationRecord
   #   pickup_item.warehouse_item.confirmed_quantity
   # end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ['pickup_item_id', 'packaging_detail_id', 'quantity', 'id', 'created_at', 'updated_at']
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[pickup_item_id packaging_detail_id quantity id created_at updated_at]
   end
-
 end

@@ -1,7 +1,9 @@
-class PackagingDetailsController < ApplicationController
-  before_action :set_packaging_detail, only: %i[ show update destroy ]
+# frozen_string_literal: true
 
-  def index 
+class PackagingDetailsController < ApplicationController
+  before_action :set_packaging_detail, only: %i[show update destroy]
+
+  def index
     packaging_details = PackagingDetail.all
     render json: packaging_details
   end
@@ -9,7 +11,7 @@ class PackagingDetailsController < ApplicationController
   # GET /packaging_details
   def filter
     @q = PackagingDetail.ransack(params[:q])
-    packaging_details = @q.result
+    @q.result
 
     render json: @packaging_details
   end
@@ -45,13 +47,14 @@ class PackagingDetailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_packaging_detail
-      @packaging_detail = PackagingDetail.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def packaging_detail_params
-      params.require(:packaging_detail).permit(:package_type, :weight, :length, :width, :height, :cbm)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_packaging_detail
+    @packaging_detail = PackagingDetail.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def packaging_detail_params
+    params.require(:packaging_detail).permit(:package_type, :weight, :length, :width, :height, :cbm)
+  end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :packaging_detail do
-    package_type { ['box', 'pallet'].sample }
+    package_type { %w[box pallet].sample }
     weight { Faker::Number.number(digits: 2) }
     length { Faker::Number.number(digits: 2) }
     width { Faker::Number.number(digits: 2) }

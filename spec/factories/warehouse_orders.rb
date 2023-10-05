@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :warehouse_order do
     doc_no { Faker::Lorem.sentences }
