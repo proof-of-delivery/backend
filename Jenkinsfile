@@ -2,14 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/proof-of-delivery/pod_backend']]])
-            }
-        }
-
+      
         stage('Build') {
             steps {
+                sh 'rbenv install'
                 sh 'rbenv local 3.2.2'
                 sh 'gem install bundler'
                 sh 'gem install ./vendor/comee_core-0.1.9.gem'
